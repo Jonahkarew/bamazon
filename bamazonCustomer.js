@@ -107,31 +107,6 @@ function buySomething() {
 
 
       })
-
-      //check if input of units to purchase is in stock
-      // if (userPurchaseUnits > connection.query("SELECT * FROM products WHERE ?", {
-      //   item_id: answer.purchase}
-      // ))
-     
-      
-
-     //-------uncomment later-----------
-      // connection.query("SELECT * FROM products WHERE ?", {
-      //     item_id: answer.purchase
-      //   },
-      //   function (err, res) {
-      //     if (err) throw err;
-      //     console.log(res[0].product_name);
-      //   })
-
-      // connection.query("SELECT * FROM products WHERE ?", {
-      //     item_id: answer.purchase
-      //   },
-      //   function (err, res) {
-      //     if (err) throw err;
-      //     console.log(res[0].stock_quantity);
-      //     console.log(res[0].stock_quantity);
-      //   })
     }
     )
 }
