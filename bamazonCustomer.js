@@ -72,11 +72,13 @@ function buySomething() {
       connection.query("SELECT * FROM products", function (err, res){
         if(err) throw err;
 
+
+        //set a variable object for future access
         var userChoice;
         for (var i = 0; i < res.length; i++){
           if(res[i].item_id === answer.purchase){
             userChoice = res[i];
-            console.log(userChoice)
+            // console.log(userChoice)
           }
         }
 
@@ -90,7 +92,16 @@ function buySomething() {
           // console.log("this is also working");
           var newStockAmount = userChoice.stock_quantity - answer.units;
           console.log(newStockAmount)
-          connection.query("UPDATE products SET stock_quantity ? WHERE id = ?", [newStockAmount, userChoice])
+          connection.query(`UPDATE products SET stock_quantity = ${newStockAmount} WHERE item_id = ${userChoice.item_id}`, function(err, res){
+            if (err) {
+              console.log(err)
+            }
+            else{
+              var userTotalCost = userChoice.price * answer.units;
+              console.log(`You have purchased ${answer.units} units of ${userChoice.product_name} for a total of $${userTotalCost}`);
+              return buySomething();
+            }
+          })
         }
 
 
